@@ -1,0 +1,118 @@
+                        /*Header*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-image: url('../img/plano_construcion.jpg'); /*cambia la imagen de fondo*/
+    background-size: cover;
+}
+
+.logo-section {
+    width: 30%;
+}
+
+.text-section {
+    width: 40%;
+    text-align: center;
+    color: rgb(0, 0, 0); /*cambia el color del texto*/
+}
+
+.login-section {
+    width: 30%;
+    text-align: right;
+}
+
+.logo-placeholder {     /*logo tamaño*/
+    width: 200px;
+    height: 100px;
+    display: inline-block;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #17d3c6; /*cambia el color del boton*/
+    color: rgb(0, 0, 0);     /*cambia el color del texto*/
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #3cf708; /*cambia el color del boton al pasar el mouse*/
+}
+                        /*Fin de header*/
+
+                        /*Main*/
+.nav-links {
+    list-style: none; 
+    display: flex; 
+    justify-content: center; 
+    padding: 0; 
+}
+
+.nav-links li {
+    margin: 0 15px; /
+}
+
+.nav-links a {
+    text-decoration: none; 
+    color: #ffffff; /* Ajusta el color del texto */
+    font-weight: bold;
+}
+nav {
+    background-color: #808080; /*cambia el color de fondo*/
+    padding: 10px; 
+}
+
+                        /*Fin del main*/
+
+                        /*Body*/
+
+                        /*Fin de Body*/
+
+                        /*Footer*/
+                        footer {
+                            background-color: #333; /* Fondo oscuro para contraste */
+                            color: #fff; /* Texto blanco */
+                            padding: 30px 0;
+                            width: 100%;
+                        }
+                
+                        .footer-container {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            max-width: 1200px;
+                            margin: 0 auto;
+                            padding: 0 20px;
+                            flex-wrap: wrap;
+                        }
+                
+                        .social-media h3 {
+                            font-size: 18px;
+                            margin-bottom: 10px;
+                            color: #f5a623; /* Tono dorado para el título */
+                        }
+                
+                        .social-media a {
+                            color: #fff;
+                            font-size: 24px;
+                            margin: 0 10px;
+                            transition: color 0.3s ease;
+                        }
+                
+                        .social-media a:hover {
+                            color: #f5a623; /* Tono dorado al pasar el mouse */
+                        }
+                
+                        .copyright p {
+                            font-size: 14px;
+                            text-align: center;
+                        }
+                
+                        .copyright span {
+                            color: #f5a623; /* Tono dorado para el nombre de la empresa */
+                        }
+                        /*Fin de footer*/
+
