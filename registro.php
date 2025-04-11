@@ -4,12 +4,12 @@ include "conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger datos del formulario
-    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
-    $apellido = mysqli_real_escape_string($conexion, $_POST['apellido']);
-    $telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);
-    $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
-    $email = mysqli_real_escape_string($conexion, $_POST['email']);
-    $contrasena = mysqli_real_escape_string($conexion, $_POST['contrasena']);
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $telefono = $_POST['telefono'];
+    $dni = $_POST['dni'];
+    $email = $_POST['email'];
+    $contrasena = $_POST['contrasena'];
     
     // Encriptar la contraseña
     $contrasena_hash = password_hash($contrasena, PASSWORD_BCRYPT);
@@ -17,23 +17,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Establecer la fecha de registro
     $fecha_registro = date("Y-m-d H:i:s");
     
-    // Verificar si el correo ya está registrado
-    $query = "SELECT email FROM usuarios WHERE email = '$email'";
-    $result = mysqli_query($conexion, $query);
+    // Establecer el rol por defecto
+    $rol = "usuario";
     
-    if (mysqli_num_rows($result) > 0) {
+    // Verificar si el correo ya está registrado
+    $stmt = $conexion->prepare("SELECT email FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
         echo "<script>alert('El correo ya está registrado.'); window.location.href='registro.php';</script>";
     } else {
         // Insertar usuario en la base de datos
-        $query = "INSERT INTO usuarios (nombre, apellido, telefono, dni, email, contrasena, fecha_registro) 
-                  VALUES ('$nombre', '$apellido', '$telefono', '$dni', '$email', '$contrasena_hash', '$fecha_registro')";
+        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, telefono, dni, email, contrasena, fecha_registro, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $nombre, $apellido, $telefono, $dni, $email, $contrasena_hash, $fecha_registro, $rol);
         
-        if (mysqli_query($conexion, $query)) {
+        if ($stmt->execute()) {
             echo "<script>alert('Registro exitoso. Por favor, inicia sesión.'); window.location.href='index.php';</script>";
         } else {
-            echo "<script>alert('Error al registrar: " . mysqli_error($conexion) . "'); window.location.href='registro.php';</script>";
+            echo "<script>alert('Error al registrar: " . $conexion->error . "'); window.location.href='registro.php';</script>";
         }
     }
+    $stmt->close();
 }
 ?>
 
@@ -71,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <script>
-    function validarFormulario() {
+    /*function validarFormulario() {
         let nombre = document.getElementById("nombre").value;
         let apellido = document.getElementById("apellido").value;
         let telefono = document.getElementById("telefono").value;
@@ -81,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
         let telefonoPattern = /^\d{9,12}$/;
-        /*let dniPattern = /^[0-9]{7,8}$/;*/
+        let dniPattern = /^[0-9]{7,8}$/;
         let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!soloLetras.test(nombre) || nombre.length < 2) {
@@ -96,10 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("El teléfono debe contener entre 9 y 12 dígitos");
             return false;
         }
-        /*if (!dniPattern.test(dni)) {
+        if (!dniPattern.test(dni)) {
             alert("El DNI debe contener entre 7 y 8 dígitos");
             return false;
-        }*/
+        }
         if (!emailPattern.test(email)) {
             alert("Por favor, ingrese un correo electrónico válido");
             return false;
@@ -110,6 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         return true;
     }
-    </script>
+    </script>*/
 </body>
 </html>

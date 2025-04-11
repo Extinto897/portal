@@ -1,16 +1,18 @@
 <?php
 session_start();
-if ($_SESSION['rol'] != "administrador") {
-    include "cabezera.php";
-    include "menu.php";
-    include "error.php";
-    include "pie.php";
+
+
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "administrador") {
+include "cabezera.php";
+include "menu.php";
+include "error.php";
+include "pie.php";
+exit();
 }
-else {
-    include "Cabezera.php";
-    include "menu.php";
-    include "cont_usuarios.php";
-    include "pie.php";
-}
-var_dump($_SESSION)
+
+// Si el rol es "usuario", mostrar el contenido
+include "cabezera.php";
+include "menu.php";
+include "cont_usuarios.php";
+include "pie.php";
 ?>

@@ -1,24 +1,25 @@
 <?php
-session_start(); // Iniciar la sesión aquí, una sola vez
+session_start();
 include "conexion.php";
 
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($conexion, $_POST['email']);
-    $contrasena = mysqli_real_escape_string($conexion, $_POST['contrasena']);
+    $email = $_POST['email'];
+    $contrasena = $_POST['contrasena'];
     
-    // Verificar si el correo existe en la base de datos
-    $query = "SELECT * FROM usuarios WHERE email = '$email'";
-    $result = mysqli_query($conexion, $query);
+    // Preparar la consulta
+    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
-    if (!$result) {
-        $error = "Error en la consulta: " . mysqli_error($conexion);
-    } elseif (mysqli_num_rows($result) == 0) {
+    if ($result->num_rows == 0) {
         $error = "Correo o contraseña incorrectos.";
     } else {
-        $usuario = mysqli_fetch_assoc($result);
-        if ($usuario['contrasena'] === $contrasena) {
-            $_SESSION['rol'] = "usuario";
+        $usuario = $result->fetch_assoc();
+        if (password_verify($contrasena, $usuario['contrasena'])) {
+            // Asignar el rol desde la base de datos
+            $_SESSION['rol'] = $usuario['rol'] ?? "usuario"; // Usa "usuario" si rol no está definido
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['nombre'] = $usuario['nombre'];
             header("Location: index.php");
@@ -27,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $error = "Correo o contraseña incorrectos.";
         }
     }
+    $stmt->close();
 }
 
 if (!isset($_SESSION['rol'])) {

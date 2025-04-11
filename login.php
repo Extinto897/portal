@@ -2,11 +2,6 @@
 session_start();
 include "conexion.php";
 
-// Habilitar errores para depuración (quitar en producción)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
@@ -43,3 +38,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <?php include "menu.php"; ?>
+    
+    <main>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm" method="POST" action="login.php">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                <div id="emailError" class="error"></div>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                <div id="passwordError" class="error"><?php echo $error; ?></div>
+                <div class="button-container">
+                    <button type="submit" class="login-submit">Iniciar Sesión</button>
+                    <button type="button" class="register-btn" onclick="window.location.href='registro.php'">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <?php include "pie.php"; ?>
+</body>
+</html>

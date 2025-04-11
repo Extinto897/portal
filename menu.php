@@ -5,7 +5,7 @@
         <li><a href="alquilar">Alquilar</a></li>
         <li><a href="proyectos">Proyectos</a></li>
         <li><a href="contacto.php">Contactos</a></li>
-        <li><a href="mis_propiedades">Mis propiedades</a></li>
+        <li><a href="propiedades.php">Mis propiedades</a></li>
         <li><a href="usuarios.php">Zona Usuarios</a></li>
     </ul>
     <div id="accessContainer">
