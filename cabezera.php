@@ -19,6 +19,8 @@
         <div class="text-section">
             <h1>Cimientos & Sueños</h1>
         </div>
+        <div class="login-section">
+        </div>
     </header>
 </body>
 </html>

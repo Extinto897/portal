@@ -1,39 +1,45 @@
 <?php
-
 session_start();
+include "conexion.php";
 
-// Verificar si ya está logueado
-if (isset($_SESSION['rol']) && $_SESSION['rol'] === "administrador") {
-    header('Location: index.php');
-    exit();
-}
+// Habilitar errores para depuración (quitar en producción)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Procesar el formulario cuando se envía
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = trim($_POST['usuario']);
-    $password = trim($_POST['password']);
-
-    // Validaciones
-    if (empty($usuario)) {
-        $error = "El usuario no puede estar vacío!";
-    } elseif (empty($password)) {
-        $error = "La contraseña no puede estar vacía!";
-    } elseif ($usuario === "admin" && $password === "admin") {
-        $_SESSION['rol'] = "administrador";
-        $_SESSION['usuario'] = $usuario;
-        header('Location: index.php');
+$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = mysqli_real_escape_string($conexion, $_POST['email']);
+    $contrasena = mysqli_real_escape_string($conexion, $_POST['contrasena']);
+    
+    // Consulta para buscar usuario
+    $query = "SELECT * FROM usuarios WHERE email = '$email' AND contrasena = '$contrasena'";
+    $result = mysqli_query($conexion, $query);
+    
+    if (!$result) {
+        $error = "Error en la consulta: " . mysqli_error($conexion);
+    } elseif (mysqli_num_rows($result) > 0) {
+        $usuario = mysqli_fetch_assoc($result);
+        // Establecer variables de sesión
+        $_SESSION['rol'] = "usuario";
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['nombre'] = $usuario['nombre'];
+        header("Location: index.php");
         exit();
     } else {
-        $error = "Credenciales incorrectas!";
+        $error = "Correo o contraseña incorrectos.";
     }
 }
-
-// Incluir componentes de la página
-include "cabezera.php";
-include "menu.php";
-include "formulario_inicio_sesion.php";
-include "pie.php";
-
-// Debug (opcional)
-var_dump($_SESSION);
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Cimientos & Sueños</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/8dd92a9059.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <?php include "menu.php"; ?>

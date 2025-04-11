@@ -1,4 +1,4 @@
-                        /*Header*/
+/*Header*/
 .header {
     display: flex;
     justify-content: space-between;
@@ -154,9 +154,8 @@ nav {
     align-items: center;
     z-index: 1000;
 }
-
 .modal-content {
-    background-image: url('/img/fondo_form_login.jpg'); /* Imagen de fondo */
+    background-image: url('../img/fondo_form_login.jpg'); /* Imagen de fondo */
     background-size: cover;
     background-position: center;
     /*background-color: rgba(255, 255, 255, 0.9);  Capa blanca semitransparente para legibilidad */
@@ -273,4 +272,30 @@ input:focus, textarea:focus, select:focus {
                             color: #f5a623; /* Tono dorado para el nombre de la empresa */
                         }
                         /*Fin de footer*/
-
+                        #accessContainer {
+                            display: flex;
+                            align-items: center;
+                        }
+                        
+                        .access-icon {
+                            cursor: pointer;
+                        }
+                        
+                        .logout-btn {
+                            display: block;
+                            background-color: #f44336;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            cursor: pointer;
+                            border-radius: 4px;
+                        }
+                        
+                        .logout-btn:hover {
+                            background-color: #d32f2f;
+                        }
+                        
+                        /* Asegurar que el modal esté oculto inicialmente */
+                        .modal {
+                            display: none;
+                        }
