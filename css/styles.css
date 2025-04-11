@@ -36,6 +36,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    opacity: 0.8; /*cambia la opacidad del boton*/
 }
 
 .login-button:hover {
@@ -65,6 +66,7 @@ nav {
     padding: 10px; 
 }
 
+
                         /*Fin del main*/
 
                         /*Body*/
@@ -88,7 +90,163 @@ nav {
                             padding: 0 20px;
                             flex-wrap: wrap;
                         }
-                
+ /* Estilo del contenedor de navegación */
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Asegura que los elementos se distribuyan */
+    padding: 10px 20px; /* Ajusta según tu diseño */
+}
+
+/* Estilo del contenedor de acceso */
+#accessContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Empuja el ícono/botón a la derecha */
+}
+
+/* Estilo del ícono de acceso */
+.access-icon {
+    width: 50px; /* Tamaño iconos */
+    height: 50px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.access-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s;
+}
+.access-icon:hover img {
+    opacity: 0.8;
+}
+
+/* Estilo del botón de cerrar sesión */
+.logout-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #dc3545; /* Rojo */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* Estilo del modal */
+.modal {
+    display: none;
+    color: #ffffff; /* Cambia el color del texto */
+    text-shadow: #dc5757 0px 0px 5px; /* Sombra de texto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-image: url('/img/fondo_form_login.jpg'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    /*background-color: rgba(255, 255, 255, 0.9);  Capa blanca semitransparente para legibilidad */
+    background-blend-mode: overlay;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content h2 {
+    text-align: center; /* Centrar el texto "Iniciar Sesión" */
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Contenedor para centrar los botones */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.modal-content button {
+    width: 48%;
+    padding: 10px;
+    margin: 5px 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.login-submit {
+    background-color: #28a745;
+    color: white;
+    opacity: 0.8; /* Cambia la opacidad del botón */
+}
+.login-submit:hover {
+    background-color: #218838;
+}
+
+.register-btn {
+    background-color: #007bff;
+    color: white;
+    opacity: 0.8;
+}
+
+.register-btn:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 8px;
+    display: none;
+}
+/* Estilos para todos los campos de formulario */
+input, textarea, select {
+    opacity: 0.8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Opcional: Restaurar opacidad al enfocar los campos */
+input:focus, textarea:focus, select:focus {
+    opacity: 1;
+    outline: none;
+    border-color: #007bff;
+}
                         .social-media h3 {
                             font-size: 18px;
                             margin-bottom: 10px;

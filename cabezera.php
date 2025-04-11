@@ -19,17 +19,6 @@
         <div class="text-section">
             <h1>Cimientos & Sueños</h1>
         </div>
-        <div class="login-section">
-            <?php
-                // Mostrar el botón de Registro solo si el rol es "invitado"
-                if (isset($_SESSION['rol']) && $_SESSION['rol'] == "invitado") {
-                    echo '<a href="registro.php" class="login-button">Registro</a>';
-                    echo '<a href="login.php" class="login-button">Iniciar sesión</a>';
-                } else {
-                    echo '<a href="index.php?salir=S" class="login-button">Cerrar sesión</a>';
-                }
-            ?>
-        </div>
     </header>
 </body>
 </html>
