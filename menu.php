@@ -5,15 +5,19 @@
         <li><a href="alquilar">Alquilar</a></li>
         <li><a href="proyectos">Proyectos</a></li>
         <li><a href="contacto.php">Contactos</a></li>
-        <li><a href="propiedades.php">Mis propiedades</a></li>
-        <li><a href="usuarios.php">Zona Usuarios</a></li>
+        <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
+            <li><a href="propiedades.php">Mis propiedades</a></li>
+                <?php endif; ?>
+        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === "administrador"): ?>
+            <li><a href="usuarios.php">Zona Usuarios</a></li>
+                <?php endif; ?>
     </ul>
     <div id="accessContainer">
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== "invitado"): ?>
             <button id="logoutButton" class="logout-btn" onclick="logout()">Cerrar Sesión</button>
         <?php else: ?>
             <div id="accessIcon" class="access-icon" onclick="openModal()">
-                <img src="img/acceso.png" alt="Ícono de acceso">
+                <img src="img/boton_login.png" alt="Ícono de acceso">
             </div>
         <?php endif; ?>
     </div>

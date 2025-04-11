@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <script>
-    /*function validarFormulario() {
+   /* function validarFormulario() {
         let nombre = document.getElementById("nombre").value;
         let apellido = document.getElementById("apellido").value;
         let telefono = document.getElementById("telefono").value;
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return false;
         }
         return true;
-    }
-    </script>*/
+    }*/
+    </script>
 </body>
 </html>
