@@ -44,6 +44,6 @@ if (isset($_GET['salir'])) {
 
 include "cabezera.php";
 include "menu.php";
-include "contenido.php";
+include "cont_index.php";
 include "pie.php";
 ?>

@@ -1,0 +1,176 @@
+body {
+    background-image: url("../img/paisaje_1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1 {
+    text-align: center;
+    color: 	#a9a9a9;
+    margin: 30px 0;
+    text-shadow: #ffdd01 1px 1px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.caja {
+    width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#caja1 {
+    background-color: #9c9c9c;
+    border: 2px solid red;
+    font-size: 20px;
+}
+
+#caja2 {
+    background-color: #9c9c9c;
+    border: 2px solid green;
+    font-size: 20px;
+}
+
+#caja3 {
+    background-color: #9c9c9c;
+    border: 2px solid blue;
+    font-size: 20px;
+}
+
+.Bienvenidos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh; /* Reducido de 100vh para mejor visualización */
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.Bienvenidos_1, .Bienvenidos_3 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Bienvenidos_2 {
+    flex: 2; /* Más espacio para el video */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Bienvenidos_2 video {
+    width: 100%;
+    max-width: 640px; /* Tamaño más grande */
+    height: auto;
+}
+
+.Bienvenidos img {
+    max-width: 100%;
+    height: auto;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 500px; /* Altura fija para el contenedor */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Muestra la imagen completa sin recortar */
+}
+
+.interiores_texto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 20px;
+    color: #fff;
+}
+
+.interiores_texto_1 {
+  text-align: center;
+  font-size: 25px;
+  color: #fff;
+}
+
+.video-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.video-wrapper {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+    width: 100%;
+    height: 225px;
+    display: block;
+    border: none;
+}
+
+.video-description {
+    padding: 12px 15px;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    background: #f0f0f0;
+    margin: 0;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .video-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-wrapper {
+        width: 90%;
+    }
+}
