@@ -11,6 +11,9 @@
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === "administrador"): ?>
             <li><a href="usuarios.php">Zona Usuarios</a></li>
                 <?php endif; ?>
+                <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
+            <li><a href="tienda.php">Tienda</a></li>
+                <?php endif; ?>
     </ul>
     <div id="accessContainer">
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== "invitado"): ?>

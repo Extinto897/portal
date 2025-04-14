@@ -1,0 +1,10 @@
+body {
+    padding: 20px;
+}
+.panel {
+    margin-bottom: 30px;
+}
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}

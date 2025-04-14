@@ -20,8 +20,8 @@ include "conexion.php";
         <div class="logo-section">
             <img src="img/logo.jpg" alt="logo de la empresa" class="logo-placeholder">
         </div>
-        <div class="text-section">
-            <h1>Cimientos & Sueños</h1>
+        <div class="text-section_2">
+            <h1 class="text">Cimientos & Sueños</h1>
         </div>
         <div class="login-section">
             <?php
