@@ -48,14 +48,36 @@ foreach ($productCards as $card) {
             }
         }
 
+        // Extraer precio
+        $precio = 0.0;
+        $prices = $card->getElementsByTagName('p');
+        foreach ($prices as $price) {
+            if ($price->getAttribute('class') === 'product-price') {
+                $precio = floatval(str_replace('€', '', $price->nodeValue));
+                break;
+            }
+        }
+
+        // Extraer descripción (asumiendo que está en un <p class="product-description">)
+        $description = '';
+        $descriptions = $card->getElementsByTagName('p');
+        foreach ($descriptions as $desc) {
+            if ($desc->getAttribute('class') === 'product-description') {
+                $description = $desc->nodeValue;
+                break;
+            }
+        }
+
         // Insertar en la base de datos
-        if (!empty($nombre) && !empty($foto) && $stock > 0) {
+        if (!empty($nombre) && !empty($foto) && $stock > 0 && $precio > 0) {
             try {
-                $sql = "INSERT INTO productos (nombre, foto, stock) VALUES (:nombre, :foto, :stock)";
+                $sql = "INSERT INTO productos (nombre, foto, stock, precio, description) VALUES (:nombre, :foto, :stock, :precio, :description)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':nombre', $nombre);
                 $stmt->bindParam(':foto', $foto);
                 $stmt->bindParam(':stock', $stock);
+                $stmt->bindParam(':precio', $precio);
+                $stmt->bindParam(':description', $description); // Nuevo parámetro
                 $stmt->execute();
                 echo "Producto '$nombre' insertado correctamente.<br>";
             } catch (PDOException $e) {

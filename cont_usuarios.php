@@ -1,256 +1,217 @@
+<?php
+// Incluir el archivo de conexión
+include 'conexion.php';
+
+// Asegurarse de que la base de datos correcta esté seleccionada
+mysqli_select_db($conexion, "Cimientos & Sueños") or die("Error al seleccionar la base de datos: " . mysqli_error($conexion));
+
+// Verificar si la tabla 'productos' existe
+$result = mysqli_query($conexion, "SHOW TABLES LIKE 'productos'");
+if (mysqli_num_rows($result) == 0) {
+    die("La tabla 'productos' no existe en la base de datos 'Cimientos & Sueños'. Verifique el nombre de la tabla.");
+}
+
+// Manejar la actualización de datos del producto
+if (isset($_POST['actualizar_producto'])) {
+    $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($conexion, $_POST['nombre']) : '';
+    $foto = isset($_POST['foto']) ? mysqli_real_escape_string($conexion, $_POST['foto']) : '';
+    $precio = isset($_POST['precio']) ? floatval($_POST['precio']) : 0;
+    $stock = isset($_POST['stock']) ? intval($_POST['stock']) : 0;
+
+    if($id > 0) {
+        $query = "UPDATE productos SET nombre='$nombre', foto='$foto', precio='$precio', stock='$stock' WHERE id='$id'";
+        if (mysqli_query($conexion, $query)) {
+            $mensaje_producto = "<p style='color:green;'>Producto actualizado correctamente.</p>";
+        } else {
+            $mensaje_producto = "<p style='color:red;'>Error al actualizar producto: " . mysqli_error($conexion) . "</p>";
+        }
+    }
+}
+
+// Obtener datos del producto para editar
+$producto_editar = null;
+if (isset($_GET['id_producto']) && is_numeric($_GET['id_producto']) && $_GET['id_producto'] > 0) {
+    $id = intval($_GET['id_producto']);
+    $query = "SELECT * FROM productos WHERE id='$id'";
+    $result = mysqli_query($conexion, $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $producto_editar = mysqli_fetch_assoc($result);
+    } else {
+        $error_producto = "<p style='color:red;'>Error: Producto no encontrado.</p>";
+    }
+}
+
+// Obtener todos los productos
+$query_productos = "SELECT * FROM `productos`";
+$result_productos = mysqli_query($conexion, $query_productos);
+if (!$result_productos) {
+    $error_lista_productos = "<p style='color:red;'>Error en la consulta de productos: " . mysqli_error($conexion) . "</p>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles_adminpanel.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Panel de Administración</title>
+    <title>Gestión de Productos</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+        }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f2f2f2; 
+        }
+        .form-container { 
+            max-width: 500px; 
+            margin: 0 auto 30px; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+        .form-container label { 
+            display: block; 
+            margin: 5px 0; 
+        }
+        .form-container input, .form-container select { 
+            width: 100%; 
+            padding: 8px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+        }
+        .form-container button { 
+            padding: 10px 20px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+        }
+        .form-container button:hover { 
+            background-color: #45a049; 
+        }
+        .edit-link { 
+            color: blue; 
+            text-decoration: underline; 
+            cursor: pointer; 
+        }
+        .error { 
+            color: red; 
+            margin: 10px 0; 
+        }
+        .success { 
+            color: green; 
+            margin: 10px 0; 
+        }
+        .section { 
+            margin-bottom: 30px; 
+        }
+        .btn-volver { 
+            padding: 10px 20px; 
+            background-color: #6c757d; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .btn-volver:hover { 
+            background-color: #5a6268; 
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-    <?php
-    // Incluir archivo de conexión
-    include 'conexion.php';
+    <h1>Gestión de Productos</h1>
 
-    // Consulta para obtener usuarios
-    $query_usuarios = "SELECT id, nombre, email, rol FROM usuarios";
-    $query = "SELECT ID_usuario, nombre, email, rol FROM usuarios";
+    <!-- Mostrar mensajes de éxito/error -->
+    <?php if(isset($mensaje_producto)) echo $mensaje_producto; ?>
+    <?php if(isset($error_producto)) echo $error_producto; ?>
 
-    // Consulta para obtener productos
-    $query_productos = "SELECT id, nombre, stock, precio, foto FROM productos";
-    $resultado_productos = mysqli_query($conexion, $query_productos);
-
-    // Consulta para obtener pedidos (si deseas mantener esta funcionalidad)
-    $query_pedidos = "SELECT p.id, u.nombre AS usuario, pr.nombre AS producto, p.cantidad, p.estado 
-                      FROM pedidos p 
-                      JOIN usuarios u ON p.id_usuario = u.id 
-                      JOIN productos pr ON p.id_producto = pr.id";
-    $resultado_pedidos = mysqli_query($conexion, $query_pedidos);
-    ?>
-
-    <!-- Navegación entre paneles -->
-    <ul class="nav nav-tabs mb-4">
-        <li class="nav-item">
-            <a class="nav-link active" href="#users" data-bs-toggle="tab">Usuarios</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#products" data-bs-toggle="tab">Productos y Pedidos</a>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <!-- Panel de Usuarios -->
-        <div class="tab-pane fade show active panel" id="users">
-            <h2>Gestión de Usuarios</h2>
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#userModal">Agregar Usuario</button>
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="userTableBody">
-                        <?php while ($usuario = mysqli_fetch_assoc($resultado_usuarios)) { ?>
-                            <tr>
-                                <td><?php echo $usuario['id']; ?></td>
-                                <td><?php echo htmlspecialchars($usuario['nombre']); ?></td>
-                                <td><?php echo htmlspecialchars($usuario['email']); ?></td>
-                                <td><?php echo htmlspecialchars($usuario['rol']); ?></td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning" onclick="editUser(<?php echo $usuario['id']; ?>, '<?php echo htmlspecialchars($usuario['nombre']); ?>', '<?php echo htmlspecialchars($usuario['email']); ?>', '<?php echo htmlspecialchars($usuario['rol']); ?>')">Editar</button>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteUser(<?php echo $usuario['id']; ?>)">Eliminar</button>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Panel de Productos y Pedidos -->
-        <div class="tab-pane fade panel" id="products">
-            <h2>Gestión de Productos</h2>
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#productModal">Agregar Producto</button>
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productTableBody">
-                        <?php while ($producto = mysqli_fetch_assoc($resultado_productos)) { ?>
-                            <tr>
-                                <td><?php echo $producto['id']; ?></td>
-                                <td>
-                                    <?php if ($producto['foto']) { ?>
-                                        <img src="images/<?php echo htmlspecialchars($producto['foto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" style="width: 50px; height: auto;">
-                                    <?php } else { ?>
-                                        Sin imagen
-                                    <?php } ?>
-                                </td>
-                                <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
-                                <td><?php echo $producto['stock']; ?></td>
-                                <td><?php echo number_format($producto['precio'], 2); ?></td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning" onclick="editProduct(<?php echo $producto['id']; ?>, '<?php echo htmlspecialchars($producto['nombre']); ?>', <?php echo $producto['stock']; ?>, <?php echo $producto['precio']; ?>, '<?php echo htmlspecialchars($producto['foto']); ?>')">Editar</button>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteProduct(<?php echo $producto['id']; ?>)">Eliminar</button>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 class="mt-4">Pedidos</h2>
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID Pedido</th>
-                            <th>Usuario</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orderTableBody">
-                        <?php while ($pedido = mysqli_fetch_assoc($resultado_pedidos)) { ?>
-                            <tr>
-                                <td><?php echo $pedido['id']; ?></td>
-                                <td><?php echo htmlspecialchars($pedido['usuario']); ?></td>
-                                <td><?php echo htmlspecialchars($pedido['producto']); ?></td>
-                                <td><?php echo $pedido['cantidad']; ?></td>
-                                <td><?php echo htmlspecialchars($pedido['estado']); ?></td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning" onclick="editOrder(<?php echo $pedido['id']; ?>)">Editar</button>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <!-- Lista de productos -->
+    <div class="section">
+        <h2>Lista de Productos</h2>
+        <?php if(isset($error_lista_productos)): ?>
+            <?php echo $error_lista_productos; ?>
+        <?php elseif($result_productos && mysqli_num_rows($result_productos) > 0): ?>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Foto</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acción</th>
+                </tr>
+                <?php while ($producto = mysqli_fetch_assoc($result_productos)): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($producto['id']); ?></td>
+                        <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
+                        <td><img src="<?php echo htmlspecialchars($producto['foto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" width="50"></td>
+                        <td><?php echo htmlspecialchars($producto['precio']); ?></td>
+                        <td><?php echo htmlspecialchars($producto['stock']); ?></td>
+                        <td><a href="cont_usuarios.php?id_producto=<?php echo htmlspecialchars($producto['id']); ?>" class="edit-link">Editar</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        <?php else: ?>
+            <p class="error">No se encontraron productos.</p>
+        <?php endif; ?>
     </div>
 
-    <!-- Modal para Usuarios -->
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Editar/Agregar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Formulario para modificar productos -->
+    <?php if ($producto_editar): ?>
+        <div class="form-container">
+            <h2>Modificar Producto</h2>
+            <form method="POST" action="">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($producto_editar['id']); ?>">
+                
+                <label>Nombre:</label>
+                <input type="text" name="nombre" value="<?php echo htmlspecialchars($producto_editar['nombre']); ?>" required>
+
+                <label>Foto (ruta de la imagen):</label>
+                <input type="text" name="foto" value="<?php echo htmlspecialchars($producto_editar['foto']); ?>" required>
+
+                <label>Precio:</label>
+                <input type="number" step="0.01" name="precio" value="<?php echo htmlspecialchars($producto_editar['precio']); ?>" required>
+
+                <label>Stock:</label>
+                <input type="number" name="stock" value="<?php echo htmlspecialchars($producto_editar['stock']); ?>" required>
+
+                <div class="button-container">
+                    <button type="submit" name="actualizar_producto">Actualizar Producto</button>
+                    <a href="http://localhost/portal/usuarios.php" class="btn-volver">Volver al Portal</a>
                 </div>
-                <div class="modal-body">
-                    <form id="userForm" action="guardar_usuario.php" method="POST">
-                        <input type="hidden" id="userId" name="userId">
-                        <div class="mb-3">
-                            <label for="userName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="userName" name="userName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="userEmail" name="userEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userRole" class="form-label">Rol</label>
-                            <select class="form-select" id="userRole" name="userRole" required>
-                                <option value="admin">Admin</option>
-                                <option value="user">Usuario</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
-    </div>
+    <?php endif; ?>
 
-    <!-- Modal para Productos -->
-    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel">Editar/Agregar Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="productForm" action="guardar_producto.php" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" id="productId" name="productId">
-                        <div class="mb-3">
-                            <label for="productName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="productName" name="productName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productStock" class="form-label">Stock</label>
-                            <input type="number" class="form-control" id="productStock" name="productStock" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productPrice" class="form-label">Precio</label>
-                            <input type="number" step="0.01" class="form-control" id="productPrice" name="productPrice" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productPhoto" class="form-label">Foto</label>
-                            <input type="file" class="form-control" id="productPhoto" name="productPhoto" accept="image/*">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Editar usuario
-        function editUser(id, name, email, role) {
-            document.getElementById("userId").value = id;
-            document.getElementById("userName").value = name;
-            document.getElementById("userEmail").value = email;
-            document.getElementById("userRole").value = role;
-            new bootstrap.Modal(document.getElementById("userModal")).show();
-        }
-
-        // Editar producto
-        function editProduct(id, name, stock, price, photo) {
-            document.getElementById("productId").value = id;
-            document.getElementById("productName").value = name;
-            document.getElementById("productStock").value = stock;
-            document.getElementById("productPrice").value = price;
-            // La foto no se puede pre-cargar en un input tipo file por seguridad
-            new bootstrap.Modal(document.getElementById("productModal")).show();
-        }
-
-        // Eliminar usuario (ejemplo, necesitarás un archivo PHP para procesarlo)
-        function deleteUser(id) {
-            if (confirm("¿Estás seguro de eliminar este usuario?")) {
-                window.location.href = `eliminar_usuario.php?id=${id}`;
-            }
-        }
-
-        // Eliminar producto (ejemplo, necesitarás un archivo PHP para procesarlo)
-        function deleteProduct(id) {
-            if (confirm("¿Estás seguro de eliminar este producto?")) {
-                window.location.href = `eliminar_producto.php?id=${id}`;
-            }
-        }
-
-        // Editar pedido (simulación, necesitarás lógica adicional)
-        function editOrder(id) {
-            alert("Editar pedido ID: " + id + " (funcionalidad no implementada)");
-        }
-    </script>
 </body>
 </html>
+
+<?php
+// Cerrar la conexión
+mysqli_close($conexion);
+?>

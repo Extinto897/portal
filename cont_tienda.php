@@ -1,95 +1,174 @@
+<?php
+// Incluir el archivo de conexión
+include 'conexion.php';
+
+// Consulta para obtener todos los productos de la base de datos
+$query = "SELECT * FROM productos";
+$result = mysqli_query($conexion, $query);
+
+// Verificar si hay errores en la consulta
+if (!$result) {
+    die("Error al obtener productos: " . mysqli_error($conexion));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles_tienda.css">
+    <title>Tienda Cimientos & Sueños</title>
+    <style>
+        /* Estilos para la tienda */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .welcome_to_shop {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #555;
+            margin-top: 0;
+        }
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .product-name {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: #333;
+        }
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            min-height: 40px;
+        }
+        .product-price {
+            font-weight: bold;
+            color: #e63946;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .product-stock {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .buy-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+        .stock-low {
+            color: #e63946;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <h1 class="welcome_to_shop">Bienvenido a la tienda oficial de Cimientos & Sueños</h1>
 <h2>Merchandising oficial</h2>
 <div class="shop-container">
     <div class="products-grid">
-        <!-- Producto 1 -->
-        <div class="product-card">
-            <img src="img/productos/taza.png" alt="taza" class="product-image">
-            <h2 class="product-name">Taza</h2>
-            <p class="product-description">Taza color blanco 11 oz.</p>
-            <p class="product-price">15.00€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Taza', 15.00)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 2 -->
-        <div class="product-card">
-            <img src="img/productos/camiseta_unisex.png" alt="camiseta unisex" class="product-image">
-            <h2 class="product-name">Camiseta unisex</h2>
-            <p class="product-description">Camiseta unisex gris claro.</p>
-            <p class="product-price">22.00€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Camiseta unisex', 22.00)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 3 -->
-        <div class="product-card">
-            <img src="img/productos/sudadera.png" alt="sudadera" class="product-image">
-            <h2 class="product-name">Sudadera invierno</h2>
-            <p class="product-description">Sudadera invierno con capucha unisex.</p>
-            <p class="product-price">35.60€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Sudadera invierno', 35.60)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 4 -->
-        <div class="product-card">
-            <img src="img/productos/funda.png" alt="funda telefono" class="product-image">
-            <h2 class="product-name">Funda para Samsung Galaxy S25 Ultra</h2>
-            <p class="product-description">Funda clásica para Samsung Galaxy S25 Ultra.</p>
-            <p class="product-price">15.99€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Funda para Samsung Galaxy S25 Ultra', 15.99)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 5 -->
-        <div class="product-card">
-            <img src="img/productos/mochila.png" alt="mochila" class="product-image">
-            <h2 class="product-name">Mochila Under Armour</h2>
-            <p class="product-description">Mochila Under Armour resistente.</p>
-            <p class="product-price">60.99€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Mochila Under Armour', 60.99)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 6 -->
-        <div class="product-card">
-            <img src="img/productos/alfombrilla.png" alt="alfombrilla raton" class="product-image">
-            <h2 class="product-name">Alfombrilla para ratón</h2>
-            <p class="product-description">Alfombrilla para ratón, incluye de regalo ratón y teclado inalámbrico RGB.</p>
-            <p class="product-price">16.99€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Alfombrilla para ratón', 16.99)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 7 -->
-        <div class="product-card">
-            <img src="img/productos/funda_airpod.png" alt="Case for AirPods" class="product-image">
-            <h2 class="product-name">Case for AirPods Pro Gen 2</h2>
-            <p class="product-description">Funda para AirPods Pro Gen 2 de silicona resistente.</p>
-            <p class="product-price">16.94€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Case for AirPods Pro Gen 2', 16.94)">Añadir a la cesta</button>
-        </div>
-
-        <!-- Producto 8 -->
-        <div class="product-card">
-            <img src="img/productos/bolsa_deporte.png" alt="bolsa deportiva" class="product-image">
-            <h2 class="product-name">Bolsa deportiva all over</h2>
-            <p class="product-description">Bolsa deportiva all over de alta capacidad.</p>
-            <p class="product-price">70.65€</p>
-            <p class="product-stock">Stock: <span class="stock-count">500</span></p>
-            <button class="buy-button" onclick="addToCart('Bolsa deportiva all over', 70.65)">Añadir a la cesta</button>
-        </div>
+        <?php while ($producto = mysqli_fetch_assoc($result)): 
+            // Determinar clase de stock
+            $stockClass = ($producto['stock'] < 10) ? 'stock-low' : '';
+        ?>
+            <!-- Tarjeta de producto dinámica -->
+            <div class="product-card">
+                <img src="<?php echo htmlspecialchars($producto['foto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-image">
+                <h2 class="product-name"><?php echo htmlspecialchars($producto['nombre']); ?></h2>
+                <p class="product-description"><?php echo htmlspecialchars($producto['descripcion'] ?? 'Descripción no disponible'); ?></p>
+                <p class="product-price"><?php echo number_format($producto['precio'], 2); ?>€</p>
+                <p class="product-stock">Stock: <span class="stock-count <?php echo $stockClass; ?>"><?php echo htmlspecialchars($producto['stock']); ?></span></p>
+                <button class="buy-button" 
+                        onclick="addToCart(<?php echo $producto['id']; ?>, '<?php echo htmlspecialchars($producto['nombre']); ?>', <?php echo $producto['precio']; ?>)"
+                        <?php echo ($producto['stock'] <= 0) ? 'disabled' : ''; ?>>
+                    <?php echo ($producto['stock'] <= 0) ? 'Agotado' : 'Añadir a la cesta'; ?>
+                </button>
+            </div>
+        <?php endwhile; ?>
     </div>
 </div>
+
+<script>
+// Función para añadir productos al carrito
+function addToCart(id, nombre, precio) {
+    // Obtener carrito actual de localStorage o crear uno nuevo
+    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    
+    // Verificar si el producto ya está en el carrito
+    const itemExistente = carrito.find(item => item.id === id);
+    
+    if (itemExistente) {
+        itemExistente.cantidad += 1;
+    } else {
+        carrito.push({
+            id: id,
+            nombre: nombre,
+            precio: precio,
+            cantidad: 1
+        });
+    }
+    
+    // Guardar en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    // Mostrar notificación
+    alert(`"${nombre}" añadido al carrito`);
+    
+    // Actualizar contador de carrito (si existe)
+    if (typeof updateCartCount === 'function') {
+        updateCartCount();
+    }
+}
+</script>
+
+<?php
+// Cerrar la conexión a la base de datos
+mysqli_close($conexion);
+?>
 </body>
 </html>
