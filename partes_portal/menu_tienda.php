@@ -1,19 +1,17 @@
 <nav class="nav-container">
-    <ul class="nav-links">
+     <ul class="nav-links">
         <li><a href="index.php">Inicio</a></li>
         <li><a href="comprar">Comprar</a></li>
         <li><a href="alquilar">Alquilar</a></li>
         <li><a href="proyectos">Proyectos</a></li>
         <li><a href="contacto.php">Contactos</a></li>
-        <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
-            <li><a href="propiedades.php">Mis propiedades</a></li>
-        <?php endif; ?>
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === "administrador"): ?>
-            <li><a href="usuarios.php">Zona Usuarios</a></li>
-        <?php endif; ?>
-        <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
+            <li><a href="admin_tienda.php">Administrar tienda</a></li>
+            <li><a href="admin_usuarios.php">Administrar usuarios</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
             <li><a href="tienda.php">Tienda</a></li>
-        <?php endif; ?>
+                <?php endif; ?>
     </ul>
     <div id="accessContainer">
         <!-- Ícono del carrito a la izquierda -->
