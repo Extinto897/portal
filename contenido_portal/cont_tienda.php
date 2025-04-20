@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include 'conexion.php';
+include '../Base_de_datos/conexion.php';
 
 // Consulta para obtener todos los productos de la base de datos
 $query = "SELECT * FROM productos";
@@ -19,93 +19,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles_tienda.css">
     <title>Tienda Cimientos & Sueños</title>
-    <style>
-        /* Estilos para la tienda */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .welcome_to_shop {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        h2 {
-            text-align: center;
-            color: #555;
-            margin-top: 0;
-        }
-        .shop-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-        .product-name {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            color: #333;
-        }
-        .product-description {
-            color: #666;
-            font-size: 0.9rem;
-            margin: 10px 0;
-            min-height: 40px;
-        }
-        .product-price {
-            font-weight: bold;
-            color: #e63946;
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
-        .product-stock {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        .buy-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-        .buy-button:hover {
-            background-color: #45a049;
-        }
-        .stock-low {
-            color: #e63946;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/tienda.css">
 </head>
 <body>
 <h1 class="welcome_to_shop">Bienvenido a la tienda oficial de Cimientos & Sueños</h1>

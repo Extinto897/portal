@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Enviar correo
         $mail->send();
         // Redirigir al formulario con mensaje de éxito
-        header("Location: contacto.php?success=1");
+        header("Location: ../elementos_menu/contacto.php?success=1");
         exit;
     } catch (Exception $e) {
         echo "Error al enviar el correo: {$mail->ErrorInfo}";

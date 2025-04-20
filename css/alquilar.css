@@ -1,0 +1,105 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+.properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+.property {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.property:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.property-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+.property-info {
+    padding: 20px;
+}
+.property-title {
+    font-size: 1.3rem;
+    margin-top: 0;
+    color: #2c3e50;
+    font-weight: 600;
+}
+.property-price {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 1.4rem;
+    margin: 12px 0;
+}
+.property-features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+.property-features li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+.property-features i {
+    margin-right: 10px;
+    color: #3498db;
+    font-style: normal;
+}
+.property-description {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin: 15px 0;
+}
+.property-contact {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.property-contact:hover {
+    background: #2980b9;
+}
+.property-tag {
+    position: absolute;
+    background: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 10px;
+}
+.property-header {
+    position: relative;
+}

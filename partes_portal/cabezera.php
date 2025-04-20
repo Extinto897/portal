@@ -1,5 +1,5 @@
 <?php
-include "conexion.php"; 
+include "../Base_de_datos/conexion.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ include "conexion.php";
     <meta name="keywords" content="">
     <meta name="author" content="Alejandro Sanahuja Benitez">
     <title>portal web de pruebas</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="shortcut icon" href="img/favicon.ico"> 
     <script src="https://kit.fontawesome.com/8dd92a9059.js" crossorigin="anonymous"></script>
 </head>

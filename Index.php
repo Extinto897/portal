@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexion.php";
+include "../Base_de_datos/conexion.php";
 
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
@@ -42,8 +42,8 @@ if (isset($_GET['salir'])) {
     exit();
 }
 
-include "cabezera.php";
-include "menu.php";
-include "cont_index.php";
-include "pie.php";
+include "../partes_portal/cabezera.php";
+include "../partes_portal/menu.php";
+include "../contenido_portal/cont_index.php";
+include "../partes_portal/pie.php";
 ?>

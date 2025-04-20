@@ -3,88 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .property {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .property:hover {
-            transform: translateY(-5px);
-        }
-        .property-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .property-info {
-            padding: 15px;
-        }
-        .property-title {
-            font-size: 1.2rem;
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .property-price {
-            font-weight: bold;
-            color: #e74c3c;
-            font-size: 1.3rem;
-            margin: 10px 0;
-        }
-        .property-features {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0;
-        }
-        .property-features li {
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        .property-features i {
-            margin-right: 8px;
-            color: #3498db;
-        }
-        .property-description {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-        .property-contact {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        .property-contact:hover {
-            background: #2980b9;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/comprar.css">
 </head>
 <body>
     <div class="container">
@@ -93,7 +12,7 @@
         <div class="properties">
             <!-- Propiedad 1 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Casa+1" alt="Casa moderna" class="property-img">
+                <img src="../img/compra_alquiler/image-1.jpg" alt="Casa moderna" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Casa Moderna en Zona Residencial</h3>
                     <div class="property-price">$350,000</div>
@@ -111,7 +30,7 @@
             
             <!-- Propiedad 2 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Departamento" alt="Departamento" class="property-img">
+                <img src="../img/compra_alquiler/image-2.jpg" alt="Departamento" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Departamento en Zona Céntrica</h3>
                     <div class="property-price">$220,000</div>
@@ -129,7 +48,7 @@
             
             <!-- Propiedad 3 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Casa+Campo" alt="Casa de campo" class="property-img">
+                <img src="../img/compra_alquiler/image-3.jpg" alt="Casa de campo" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Casa de Campo con Vista al Lago</h3>
                     <div class="property-price">$480,000</div>
@@ -147,7 +66,7 @@
             
             <!-- Propiedad 4 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Oficina" alt="Oficina" class="property-img">
+                <img src="../img/compra_alquiler/image-4.jpg" alt="Oficina" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Oficina en Distrito Financiero</h3>
                     <div class="property-price">$180,000</div>
@@ -165,7 +84,7 @@
             
             <!-- Propiedad 5 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Local" alt="Local comercial" class="property-img">
+                <img src="../img/compra_alquiler/image-5.jpg" alt="Local comercial" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Local Comercial en Zona Transitada</h3>
                     <div class="property-price">$310,000</div>
@@ -183,7 +102,7 @@
             
             <!-- Propiedad 6 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Duplex" alt="Dúplex" class="property-img">
+                <img src="../img/compra_alquiler/image-6.jpg" alt="Dúplex" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Dúplex Familiar</h3>
                     <div class="property-price">$275,000</div>
@@ -201,7 +120,7 @@
             
             <!-- Propiedad 7 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Loft" alt="Loft" class="property-img">
+                <img src="../img/compra_alquiler/image-7.jpg" alt="Loft" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Loft Industrial</h3>
                     <div class="property-price">$195,000</div>
@@ -219,7 +138,7 @@
             
             <!-- Propiedad 8 -->
             <div class="property">
-                <img src="https://via.placeholder.com/400x300?text=Villa" alt="Villa" class="property-img">
+                <img src="../img/compra_alquiler/image-8.jpg" alt="Villa" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Villa de Lujo con Piscina</h3>
                     <div class="property-price">$650,000</div>

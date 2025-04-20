@@ -4,124 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Propiedades Premium</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.2rem;
-        }
-        .properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .property {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .property:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .property-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-        .property-info {
-            padding: 20px;
-        }
-        .property-title {
-            font-size: 1.3rem;
-            margin-top: 0;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        .property-price {
-            font-weight: bold;
-            color: #e74c3c;
-            font-size: 1.4rem;
-            margin: 12px 0;
-        }
-        .property-features {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0;
-        }
-        .property-features li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-        .property-features i {
-            margin-right: 10px;
-            color: #3498db;
-            font-style: normal;
-        }
-        .property-description {
-            color: #7f8c8d;
-            font-size: 0.95rem;
-            margin: 15px 0;
-        }
-        .property-contact {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-size: 0.95rem;
-            transition: background 0.3s;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .property-contact:hover {
-            background: #2980b9;
-        }
-        .property-tag {
-            position: absolute;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin: 10px;
-        }
-        .property-header {
-            position: relative;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/alquilar.css">
 </head>
 <body>
     <div class="container">
         <h1>Propiedades Exclusivas</h1>
         
         <div class="properties">
-            <!-- Propiedad 1 -->
+            <!-- Propiedad 9 -->
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Nuevo</span>
-                    <img src="https://via.placeholder.com/400x300?text=Penthouse" alt="Penthouse" class="property-img">
+                    <img src="../img/compra_alquiler/image-9.jpg" alt="Penthouse" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Penthouse con Terraza Panorámica</h3>
@@ -138,10 +32,10 @@
                 </div>
             </div>
             
-            <!-- Propiedad 2 -->
+            <!-- Propiedad 10 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="https://via.placeholder.com/400x300?text=Casa+Playa" alt="Casa en la playa" class="property-img">
+                    <img src="../img/compra_alquiler/image-10.jpg" alt="Casa en la playa" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Villa frente al Mar</h3>
@@ -158,11 +52,11 @@
                 </div>
             </div>
             
-            <!-- Propiedad 3 -->
+            <!-- Propiedad 11 -->
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Oportunidad</span>
-                    <img src="https://via.placeholder.com/400x300?text=Casa+Campestre" alt="Casa campestre" class="property-img">
+                    <img src="../img/compra_alquiler/image-11.jpg" alt="Casa campestre" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Finca Campestre con Viñedos</h3>
@@ -179,10 +73,10 @@
                 </div>
             </div>
             
-            <!-- Propiedad 4 -->
+            <!-- Propiedad 12 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="https://via.placeholder.com/400x300?text=Loft+Moderno" alt="Loft moderno" class="property-img">
+                    <img src="../img/compra_alquiler/image-12.jpg" alt="Loft moderno" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Loft en Distrito de Arte</h3>
@@ -199,11 +93,11 @@
                 </div>
             </div>
             
-            <!-- Propiedad 5 -->
+            <!-- Propiedad 13 -->
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Alquiler</span>
-                    <img src="https://via.placeholder.com/400x300?text=Oficina+Ejecutiva" alt="Oficina ejecutiva" class="property-img">
+                    <img src="../img/compra_alquiler/image-13.jpg" alt="Oficina ejecutiva" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Oficina Ejecutiva en Torre Corporativa</h3>
@@ -220,10 +114,10 @@
                 </div>
             </div>
             
-            <!-- Propiedad 6 -->
+            <!-- Propiedad 14 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="https://via.placeholder.com/400x300?text=Casa+Tradicional" alt="Casa tradicional" class="property-img">
+                    <img src="../img/compra_alquiler/image-14.jpg" alt="Casa tradicional" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Casa Histórica Restaurada</h3>
@@ -240,11 +134,11 @@
                 </div>
             </div>
             
-            <!-- Propiedad 7 -->
+            <!-- Propiedad 15 -->
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Exclusivo</span>
-                    <img src="https://via.placeholder.com/400x300?text=Departamento+Lujo" alt="Departamento de lujo" class="property-img">
+                    <img src="../img/compra_alquiler/image-15.jpg" alt="Departamento de lujo" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Departamento en Residencia VIP</h3>
@@ -261,10 +155,10 @@
                 </div>
             </div>
             
-            <!-- Propiedad 8 -->
+            <!-- Propiedad 16 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="https://via.placeholder.com/400x300?text=Cabaña+Montaña" alt="Cabaña en la montaña" class="property-img">
+                    <img src="../img/compra_alquiler/image-16.jpg" alt="Cabaña en la montaña" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Cabaña Premium en Montaña</h3>

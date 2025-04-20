@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.property {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.property:hover {
+    transform: translateY(-5px);
+}
+.property-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.property-info {
+    padding: 15px;
+}
+.property-title {
+    font-size: 1.2rem;
+    margin-top: 0;
+    color: #2c3e50;
+}
+.property-price {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 1.3rem;
+    margin: 10px 0;
+}
+.property-features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+.property-features li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.property-features i {
+    margin-right: 8px;
+    color: #3498db;
+}
+.property-description {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+.property-contact {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+.property-contact:hover {
+    background: #2980b9;
+}

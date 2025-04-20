@@ -1,12 +1,15 @@
+ENLACES
 https://creator.voiceflow.com/workspace/a2nBOQZzED (link chatbot cuenta curso)
+https://docs.google.com/spreadsheets/d/1qSycw48LBASIj25lYLl5HjbdElQpZfAvnAaOtOcMJUw/edit?gid=0#gid=0 (link excel cuenta personal)
+https://mailtrap.io/home (link mailtrap cuenta curso)
 
+TRABAJO PENDIENTE (6 pasos restantes)
 
-Esto es el portal terminado solo falta rehubicar las rutas y terminar cont_admin_usurios 
-para que coja de la base de datos los usuarios registrados y poder modificarlo (Ubicado contenido_portal)
-y por ultimo arreglar que se pueda añadir a la cesta los productos que al hacer que la base de datos 
-controle el stock y todo se rompio
-y falta buscar 16 imagenes para cont_comprar.php y cont_alquilar.php 8 a cada una y esto ya es lo ultimo 
-de lo ultimo ya nada mas
-
-
-y porfin esto esta terminado y no AÑADIR NADA MAS
+1-->Rutas arregladas (LISTO)
+2-->Comprobar que funcione todo
+3-->Pasar cont_admin_tienda.php a grok para que salga los usuarios de la base de datos
+4-->Revisar que salga las fotos favicon 
+5-->Comprobar la creacion de usuarios y el inicio de sesion
+6-->Comprobar el formulario que se envie correctamente
+7-->Subir a base de datos la importacion terminada
+Y una vez que todo funcione sin que se rompa nada subir el proyeco como Cimientos & Sueños V 1.0

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexion.php";
+include "../Base_de_datos/conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger datos del formulario
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
-        echo "<script>alert('El correo ya está registrado.'); window.location.href='registro.php';</script>";
+        echo "<script>alert('El correo ya está registrado.'); window.location.href='../Base_de_datos/registro.php';</script>";
     } else {
         // Insertar usuario en la base de datos
         $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, telefono, dni, email, contrasena, fecha_registro, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             echo "<script>alert('Registro exitoso. Por favor, inicia sesión.'); window.location.href='index.php';</script>";
         } else {
-            echo "<script>alert('Error al registrar: " . $conexion->error . "'); window.location.href='registro.php';</script>";
+            echo "<script>alert('Error al registrar: " . $conexion->error . "'); window.location.href='../Base_de_datos/registro.php';</script>";
         }
     }
     $stmt->close();
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Cimientos & Sueños</title>
-    <link rel="stylesheet" href="css/registro.css">
+    <link rel="stylesheet" href="../css/registro.css">
     <script src="https://kit.fontawesome.com/8dd92a9059.js" crossorigin="anonymous"></script>
 </head>
 <body>

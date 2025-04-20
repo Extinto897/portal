@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include 'conexion.php';
+include '../Base_de_datos/conexion.php';
 
 // Asegurarse de que la base de datos correcta esté seleccionada
 mysqli_select_db($conexion, "Cimientos & Sueños") or die("Error al seleccionar la base de datos: " . mysqli_error($conexion));
@@ -49,101 +49,7 @@ if (!$result_productos) {
     $error_lista_productos = "<p style='color:red;'>Error en la consulta de productos: " . mysqli_error($conexion) . "</p>";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Productos</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 20px;
-        }
-        table { 
-            border-collapse: collapse; 
-            width: 100%; 
-            margin-top: 20px; 
-        }
-        th, td { 
-            border: 1px solid #ddd; 
-            padding: 8px; 
-            text-align: left; 
-        }
-        th { 
-            background-color: #f2f2f2; 
-        }
-        .form-container { 
-            max-width: 500px; 
-            margin: 0 auto 30px; 
-            padding: 15px; 
-            border: 1px solid #ddd; 
-            border-radius: 5px; 
-        }
-        .form-container label { 
-            display: block; 
-            margin: 5px 0; 
-        }
-        .form-container input, .form-container select { 
-            width: 100%; 
-            padding: 8px; 
-            margin-bottom: 10px; 
-            border: 1px solid #ddd; 
-            border-radius: 4px; 
-        }
-        .form-container button { 
-            padding: 10px 20px; 
-            background-color: #4CAF50; 
-            color: white; 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer; 
-        }
-        .form-container button:hover { 
-            background-color: #45a049; 
-        }
-        .edit-link { 
-            color: blue; 
-            text-decoration: underline; 
-            cursor: pointer; 
-        }
-        .error { 
-            color: red; 
-            margin: 10px 0; 
-        }
-        .success { 
-            color: green; 
-            margin: 10px 0; 
-        }
-        .section { 
-            margin-bottom: 30px; 
-        }
-        .btn-volver { 
-            padding: 10px 20px; 
-            background-color: #6c757d; 
-            color: white; 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 10px;
-        }
-        .btn-volver:hover { 
-            background-color: #5a6268; 
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-        }
-    </style>
-</head>
-<body>
+ <link rel="stylesheet" href="../css/admin.css">
     <h1>Gestión de Productos</h1>
 
     <!-- Mostrar mensajes de éxito/error -->
@@ -172,7 +78,7 @@ if (!$result_productos) {
                         <td><img src="<?php echo htmlspecialchars($producto['foto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" width="50"></td>
                         <td><?php echo htmlspecialchars($producto['precio']); ?></td>
                         <td><?php echo htmlspecialchars($producto['stock']); ?></td>
-                        <td><a href="cont_usuarios.php?id_producto=<?php echo htmlspecialchars($producto['id']); ?>" class="edit-link">Editar</a></td>
+                        <td><a href="../contenido_portal/cont_tienda.php?id_producto=<?php echo htmlspecialchars($producto['id']); ?>" class="edit-link">Editar</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -202,7 +108,7 @@ if (!$result_productos) {
 
                 <div class="button-container">
                     <button type="submit" name="actualizar_producto">Actualizar Producto</button>
-                    <a href="http://localhost/portal/usuarios.php" class="btn-volver">Volver al Portal</a>
+                    <a href="http://localhost/portal/elementos_menu/admin_tienda.php" class="btn-volver">Volver al Portal</a>
                 </div>
             </form>
         </div>

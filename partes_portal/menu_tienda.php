@@ -1,16 +1,15 @@
 <nav class="nav-container">
      <ul class="nav-links">
         <li><a href="index.php">Inicio</a></li>
-        <li><a href="comprar">Comprar</a></li>
-        <li><a href="alquilar">Alquilar</a></li>
-        <li><a href="proyectos">Proyectos</a></li>
-        <li><a href="contacto.php">Contactos</a></li>
+        <li><a href="../elementos_menu/comprar.php">Comprar</a></li>
+        <li><a href="../elementos_menu/alquilar.php">Alquilar</a></li>
+        <li><a href="../elementos_menu/contacto.php">Contactos</a></li>
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === "administrador"): ?>
-            <li><a href="admin_tienda.php">Administrar tienda</a></li>
-            <li><a href="admin_usuarios.php">Administrar usuarios</a></li>
+            <li><a href="../elementos_menu/admin_tienda.php">Administrar tienda</a></li>
+            <li><a href="../elementos_menu/admin_usuarios.php">Administrar usuarios</a></li>
                 <?php endif; ?>
                 <?php if (isset($_SESSION['rol']) && ($_SESSION['rol'] === "administrador" || $_SESSION['rol'] === "usuario")): ?>
-            <li><a href="tienda.php">Tienda</a></li>
+            <li><a href="../elementos_menu/tienda.php">Tienda</a></li>
                 <?php endif; ?>
     </ul>
     <div id="accessContainer">
@@ -53,7 +52,7 @@
             <div id="passwordError" class="error"><?php echo isset($error) ? $error : ''; ?></div>
             <div class="button-container">
                 <button type="submit" class="login-submit">Iniciar Sesión</button>
-                <button type="button" class="register-btn" onclick="window.location.href='registro.php'">Registrarse</button>
+                <button type="button" class="register-btn" onclick="window.location.href='../Base_de_datos/registro.php'">Registrarse</button>
             </div>
         </form>
     </div>
