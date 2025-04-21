@@ -12,4 +12,5 @@ TRABAJO PENDIENTE (6 pasos restantes)
 5-->Comprobar la creacion de usuarios y el inicio de sesion
 6-->Comprobar el formulario que se envie correctamente
 7-->Subir a base de datos la importacion terminada
+8-->Arreglar verificacion de DNI de registro.php
 Y una vez que todo funcione sin que se rompa nada subir el proyeco como Cimientos & Sueños V 1.0
