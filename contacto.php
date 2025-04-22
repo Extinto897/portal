@@ -11,7 +11,7 @@ session_start();
     <meta name="author" content="Alejandro Sanahuja Benitez">
     <title>Contacto - Cimientos & Sueños Inmobiliaria</title>
     <link rel="shortcut icon" href="img/favicon.ico" alt="">
-    <link rel="stylesheet" href="../css/contacto.css">
+    <link rel="stylesheet" href="css/contacto.css">
 </head>
 <body>
     <?php
@@ -20,9 +20,9 @@ session_start();
     }
     ?>
     <div class="contact-form">
-        <a href="http://localhost/portal%20web/" class="home-btn">Inicio</a>
+        <a href="http://localhost/portal" class="home-btn">Inicio</a>
         <h2>Cimientos & Sueños<br>Inmobiliaria</h2>
-        <form action="../Mailtrap/enviar_correo.php" method="POST" onsubmit="return validarFormulario()">
+        <form action="enviar_correo.php" method="POST" onsubmit="return validarFormulario()">
             <div class="form-group">
                 <label for="nombre">Nombre completo *</label>
                 <input type="text" id="nombre" name="nombre" required>

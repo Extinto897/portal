@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include '../Base_de_datos/conexion.php';
+include 'conexion.php';
 
 // Asegurarse de que la base de datos correcta esté seleccionada
 mysqli_select_db($conexion, "Cimientos & Sueños") or die("Error al seleccionar la base de datos: " . mysqli_error($conexion));
@@ -49,7 +49,7 @@ if (!$result_productos) {
     $error_lista_productos = "<p style='color:red;'>Error en la consulta de productos: " . mysqli_error($conexion) . "</p>";
 }
 ?>
- <link rel="stylesheet" href="../css/admin.css">
+ <link rel="stylesheet" href="css/admin.css">
     <h1>Gestión de Productos</h1>
 
     <!-- Mostrar mensajes de éxito/error -->
@@ -78,7 +78,7 @@ if (!$result_productos) {
                         <td><img src="<?php echo htmlspecialchars($producto['foto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" width="50"></td>
                         <td><?php echo htmlspecialchars($producto['precio']); ?></td>
                         <td><?php echo htmlspecialchars($producto['stock']); ?></td>
-                        <td><a href="../contenido_portal/cont_tienda.php?id_producto=<?php echo htmlspecialchars($producto['id']); ?>" class="edit-link">Editar</a></td>
+                        <td><a href="contenido_portal/cont_tienda.php?id_producto=<?php echo htmlspecialchars($producto['id']); ?>" class="edit-link">Editar</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -108,7 +108,7 @@ if (!$result_productos) {
 
                 <div class="button-container">
                     <button type="submit" name="actualizar_producto">Actualizar Producto</button>
-                    <a href="http://localhost/portal/elementos_menu/admin_tienda.php" class="btn-volver">Volver al Portal</a>
+                    <a href="http://localhost/admin_tienda.php" class="btn-volver">Volver al Portal</a>
                 </div>
             </form>
         </div>

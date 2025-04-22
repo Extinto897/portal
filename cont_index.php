@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles_index.css">
+    <link rel="stylesheet" href="css/styles_index.css">
     <script src="https://kit.fontawesome.com/8dd92a9059.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -25,17 +25,17 @@
     <br>
     <div class="Bienvenidos">
         <div class="Bienvenidos_1">
-            <img src="../Videos/excavadora_izquierda.gif" alt="gif excavadora">
+            <img src="Videos/excavadora_izquierda.gif" alt="gif excavadora">
         </div>
         <div class="Bienvenidos_2">
             <video width="320" height="240" controls>
-            <source src="../Videos/Video_introduccion _centro.mp4" type="video/mp4">
-            <source src="../Videos/Video_introduccion_centro.ogg" type="video/ogg">
+            <source src="Videos/Video_introduccion _centro.mp4" type="video/mp4">
+            <source src="Videos/Video_introduccion_centro.ogg" type="video/ogg">
           Your browser does not support the video tag.
           </video>
         </div>
         <div class="Bienvenidos_3">
-            <img src="../Videos/volquete_derecha.gif"alt="gif volquete">
+            <img src="Videos/volquete_derecha.gif"alt="gif volquete">
         </div>
     </div>
     <br>
@@ -49,7 +49,7 @@
             // Generar rutas de imágenes locales
             const images = [];
             for (let i = 1; i <= 10; i++) {
-                images.push(`../img/Slider/Slider_${i}.jpg`);
+                images.push(`img/Slider/Slider_${i}.jpg`);
             }
             
             const slider = document.querySelector('.slider');

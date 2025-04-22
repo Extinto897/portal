@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Base_de_datos/conexion.php";
+include "conexion.php";
 
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,28 +33,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Cimientos & Sueños</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/8dd92a9059.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <?php include "../partes_portal/menu.php"; ?>
+    <?php include "menu.php"; ?>
     
     <main>
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
-            <form id="loginForm" method="POST" action="../Base_de_datos/login.php">
+            <form id="loginForm" method="POST" action="login.php">
                 <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
                 <div id="emailError" class="error"></div>
                 <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
                 <div id="passwordError" class="error"><?php echo $error; ?></div>
                 <div class="button-container">
                     <button type="submit" class="login-submit">Iniciar Sesión</button>
-                    <button type="button" class="register-btn" onclick="window.location.href='../Base_de_datos/registro.php'">Registrarse</button>
+                    <button type="button" class="register-btn" onclick="window.location.href='registro.php'">Registrarse</button>
                 </div>
             </form>
         </div>
     </main>
 
-    <?php include "../partes_portal/pie.php"; ?>
+    <?php include "pie.php"; ?>
 </body>
 </html>

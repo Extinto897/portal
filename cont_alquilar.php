@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Propiedades Premium</title>
-    <link rel="stylesheet" href="../css/alquilar.css">
+    <link rel="stylesheet" href="css/alquilar.css">
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Nuevo</span>
-                    <img src="../img/compra_alquiler/image-9.jpg" alt="Penthouse" class="property-img">
+                    <img src="img/compra_alquiler/image-9.jpg" alt="Penthouse" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Penthouse con Terraza Panorámica</h3>
@@ -35,7 +35,7 @@
             <!-- Propiedad 10 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="../img/compra_alquiler/image-10.jpg" alt="Casa en la playa" class="property-img">
+                    <img src="img/compra_alquiler/image-10.jpg" alt="Casa en la playa" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Villa frente al Mar</h3>
@@ -56,7 +56,7 @@
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Oportunidad</span>
-                    <img src="../img/compra_alquiler/image-11.jpg" alt="Casa campestre" class="property-img">
+                    <img src="img/compra_alquiler/image-11.jpg" alt="Casa campestre" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Finca Campestre con Viñedos</h3>
@@ -76,7 +76,7 @@
             <!-- Propiedad 12 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="../img/compra_alquiler/image-12.jpg" alt="Loft moderno" class="property-img">
+                    <img src="img/compra_alquiler/image-12.jpg" alt="Loft moderno" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Loft en Distrito de Arte</h3>
@@ -97,7 +97,7 @@
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Alquiler</span>
-                    <img src="../img/compra_alquiler/image-13.jpg" alt="Oficina ejecutiva" class="property-img">
+                    <img src="img/compra_alquiler/image-13.jpg" alt="Oficina ejecutiva" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Oficina Ejecutiva en Torre Corporativa</h3>
@@ -117,7 +117,7 @@
             <!-- Propiedad 14 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="../img/compra_alquiler/image-14.jpg" alt="Casa tradicional" class="property-img">
+                    <img src="img/compra_alquiler/image-14.jpg" alt="Casa tradicional" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Casa Histórica Restaurada</h3>
@@ -138,7 +138,7 @@
             <div class="property">
                 <div class="property-header">
                     <span class="property-tag">Exclusivo</span>
-                    <img src="../img/compra_alquiler/image-15.jpg" alt="Departamento de lujo" class="property-img">
+                    <img src="img/compra_alquiler/image-15.jpg" alt="Departamento de lujo" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Departamento en Residencia VIP</h3>
@@ -158,7 +158,7 @@
             <!-- Propiedad 16 -->
             <div class="property">
                 <div class="property-header">
-                    <img src="../img/compra_alquiler/image-16.jpg" alt="Cabaña en la montaña" class="property-img">
+                    <img src="img/compra_alquiler/image-16.jpg" alt="Cabaña en la montaña" class="property-img">
                 </div>
                 <div class="property-info">
                     <h3 class="property-title">Cabaña Premium en Montaña</h3>

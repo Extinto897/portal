@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/comprar.css">
+    <link rel="stylesheet" href="css/comprar.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="properties">
             <!-- Propiedad 1 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-1.jpg" alt="Casa moderna" class="property-img">
+                <img src="img/compra_alquiler/image-1.jpg" alt="Casa moderna" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Casa Moderna en Zona Residencial</h3>
                     <div class="property-price">$350,000</div>
@@ -30,7 +30,7 @@
             
             <!-- Propiedad 2 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-2.jpg" alt="Departamento" class="property-img">
+                <img src="img/compra_alquiler/image-2.jpg" alt="Departamento" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Departamento en Zona Céntrica</h3>
                     <div class="property-price">$220,000</div>
@@ -48,7 +48,7 @@
             
             <!-- Propiedad 3 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-3.jpg" alt="Casa de campo" class="property-img">
+                <img src="img/compra_alquiler/image-3.jpg" alt="Casa de campo" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Casa de Campo con Vista al Lago</h3>
                     <div class="property-price">$480,000</div>
@@ -66,7 +66,7 @@
             
             <!-- Propiedad 4 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-4.jpg" alt="Oficina" class="property-img">
+                <img src="img/compra_alquiler/image-4.jpg" alt="Oficina" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Oficina en Distrito Financiero</h3>
                     <div class="property-price">$180,000</div>
@@ -84,7 +84,7 @@
             
             <!-- Propiedad 5 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-5.jpg" alt="Local comercial" class="property-img">
+                <img src="img/compra_alquiler/image-5.jpg" alt="Local comercial" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Local Comercial en Zona Transitada</h3>
                     <div class="property-price">$310,000</div>
@@ -102,7 +102,7 @@
             
             <!-- Propiedad 6 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-6.jpg" alt="Dúplex" class="property-img">
+                <img src="img/compra_alquiler/image-6.jpg" alt="Dúplex" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Dúplex Familiar</h3>
                     <div class="property-price">$275,000</div>
@@ -120,7 +120,7 @@
             
             <!-- Propiedad 7 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-7.jpg" alt="Loft" class="property-img">
+                <img src="img/compra_alquiler/image-7.jpg" alt="Loft" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Loft Industrial</h3>
                     <div class="property-price">$195,000</div>
@@ -138,7 +138,7 @@
             
             <!-- Propiedad 8 -->
             <div class="property">
-                <img src="../img/compra_alquiler/image-8.jpg" alt="Villa" class="property-img">
+                <img src="img/compra_alquiler/image-8.jpg" alt="Villa" class="property-img">
                 <div class="property-info">
                     <h3 class="property-title">Villa de Lujo con Piscina</h3>
                     <div class="property-price">$650,000</div>

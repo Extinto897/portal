@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include '../Base_de_datos/conexion.php';
+include 'conexion.php';
 
 // Consulta para obtener todos los productos de la base de datos
 $query = "SELECT * FROM productos";
@@ -19,7 +19,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles_tienda.css">
     <title>Tienda Cimientos & Sueños</title>
-    <link rel="stylesheet" href="../css/tienda.css">
+    <link rel="stylesheet" href="css/tienda.css">
 </head>
 <body>
 <h1 class="welcome_to_shop">Bienvenido a la tienda oficial de Cimientos & Sueños</h1>
