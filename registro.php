@@ -2,16 +2,46 @@
 session_start();
 include "conexion.php";
 
+// Habilitar depuración (quitar en producción)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recoger datos del formulario
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $telefono = $_POST['telefono'];
-    $dni = $_POST['dni'];
-    $email = $_POST['email'];
-    $contrasena = $_POST['contrasena'];
+    // Recoger datos del formulario y limpiar
+    $nombre = trim($_POST['nombre']);
+    $apellido = trim($_POST['apellido']);
+    $telefono = trim($_POST['telefono']);
+    $email = trim($_POST['email']);
+    $contrasena = trim($_POST['contrasena']);
+    
+    // Validaciones en el servidor
+    if (!preg_match("/^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/", $nombre) || strlen($nombre) < 2) {
+        echo "<script>alert('El nombre solo debe contener letras y tener al menos 2 caracteres.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
+    if (!preg_match("/^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/", $apellido) || strlen($apellido) < 2) {
+        echo "<script>alert('El apellido solo debe contener letras y tener al menos 2 caracteres.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
+    if (!preg_match("/^\d{9,12}$/", $telefono)) {
+        echo "<script>alert('El teléfono debe contener entre 9 y 12 dígitos.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Por favor, ingrese un correo electrónico válido.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
+    if (strlen($contrasena) < 8 || !preg_match("/[A-Z]/", $contrasena) || !preg_match("/[0-9]/", $contrasena)) {
+        echo "<script>alert('La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
     
     // Encriptar la contraseña
+    if (empty($contrasena)) {
+        echo "<script>alert('La contraseña no puede estar vacía.'); window.location.href='Base_de_datos/registro.php';</script>";
+        exit;
+    }
     $contrasena_hash = password_hash($contrasena, PASSWORD_BCRYPT);
     
     // Establecer la fecha de registro
@@ -30,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('El correo ya está registrado.'); window.location.href='Base_de_datos/registro.php';</script>";
     } else {
         // Insertar usuario en la base de datos
-        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, telefono, dni, email, contrasena, fecha_registro, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssss", $nombre, $apellido, $telefono, $dni, $email, $contrasena_hash, $fecha_registro, $rol);
+        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, telefono, email, contrasena, fecha_registro, rol) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $nombre, $apellido, $telefono, $email, $contrasena_hash, $fecha_registro, $rol);
         
         if ($stmt->execute()) {
             echo "<script>alert('Registro exitoso. Por favor, inicia sesión.'); window.location.href='index.php';</script>";
@@ -64,9 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="telefono">Número de Teléfono:</label><br>
         <input type="tel" id="telefono" name="telefono" required><br><br>
 
-        <label for="dni">DNI:</label><br>
-        <input type="text" id="dni" name="dni" required><br><br>
-
         <label for="email">Correo:</label><br>
         <input type="email" id="email" name="email" required><br><br>
 
@@ -76,18 +103,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Enviar">
     </form>
 
+    <noscript>
+        <p style="color: red;">Por favor, habilita JavaScript para usar este formulario.</p>
+    </noscript>
+
     <script>
-   /* function validarFormulario() {
-        let nombre = document.getElementById("nombre").value;
-        let apellido = document.getElementById("apellido").value;
-        let telefono = document.getElementById("telefono").value;
-        let dni = document.getElementById("dni").value;
-        let email = document.getElementById("email").value;
-        let contrasena = document.getElementById("contrasena").value;
+    function validarFormulario() {
+        let nombre = document.getElementById("nombre").value.trim();
+        let apellido = document.getElementById("apellido").value.trim();
+        let telefono = document.getElementById("telefono").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let contrasena = document.getElementById("contrasena").value.trim();
 
         let soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
         let telefonoPattern = /^\d{9,12}$/;
-        let dniPattern = /^[0-9]{7,8}$/;
         let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!soloLetras.test(nombre) || nombre.length < 2) {
@@ -102,10 +131,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("El teléfono debe contener entre 9 y 12 dígitos");
             return false;
         }
-        if (!dniPattern.test(dni)) {
-            alert("El DNI debe contener entre 7 y 8 dígitos");
-            return false;
-        }
         if (!emailPattern.test(email)) {
             alert("Por favor, ingrese un correo electrónico válido");
             return false;
@@ -115,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return false;
         }
         return true;
-    }*/
+    }
     </script>
 </body>
 </html>

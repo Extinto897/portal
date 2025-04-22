@@ -1,0 +1,7 @@
+ENLACES
+https://creator.voiceflow.com/workspace/a2nBOQZzED (chatbot)
+https://mailtrap.io/home
+
+correo y contraseñas (NO BORRAR ESTOS USUARIOS GRACIAS)
+correo-->admin@gmail.com || contraseña-->Administrador
+correo-->usuario@gmail.com || contraseña-->Usuario
